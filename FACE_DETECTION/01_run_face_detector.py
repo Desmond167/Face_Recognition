@@ -16,18 +16,19 @@ GET_FACE_DETAILS = extract_face(image_path=DETECTOR_SETTINGS.INPUT_IMAGE ,
                 output_image_size=DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE ,
                     device=DETECTOR_SETTINGS.DEVICE)
 
-fig, ax = plt.subplots(figsize=(160, 160))
-for box, landmark in zip(GET_FACE_DETAILS.BOUNDING_BOX, GET_FACE_DETAILS.LANDMARKS):
-    ax.scatter(*np.meshgrid(box[[0, 2]], box[[1, 3]]))
-    print(box)
-    print(box[[0, 2]])
-plt.show()
+# fig, ax = plt.subplots(figsize=(160, 160))
+# for box, landmark in zip(GET_FACE_DETAILS.BOUNDING_BOX, GET_FACE_DETAILS.LANDMARKS):
+#     ax.scatter(*np.meshgrid(box[[0, 2]], box[[1, 3]]))
+#     print(box)
+#     print(box[[0, 2]])
+# plt.show()
 
-# CROPPED_FACE_IMAGE = Image.fromarray(GET_FACE_DETAILS.BOUNDING_BOX[0])
+for box in GET_FACE_DETAILS.BOUNDING_BOX:
+    CROPPED_FACE_IMAGE = Image.fromarray(*np.meshgrid(box[[0, 2]], box[[1, 3]]))
 
-# if CROPPED_FACE_IMAGE != 'RGB':
-#     CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('RGB')
+if CROPPED_FACE_IMAGE != 'RGB':
+    CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('RGB')
 
-# # ------- Resize pixels to required size ------- #
-# CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE)
-# CROPPED_FACE_IMAGE.save(DETECTOR_SETTINGS.OUTPUT_IMAGE)
+# ------- Resize pixels to required size ------- #
+CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE)
+CROPPED_FACE_IMAGE.save(DETECTOR_SETTINGS.OUTPUT_IMAGE)
