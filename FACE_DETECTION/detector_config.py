@@ -8,10 +8,10 @@ DEVICE = "cuda:0"
 class DetectorConfig:
 
     def configuration(self):
-        state = {
+        settings = {
             "INPUT_IMAGE" : "../sharon.jpg",
             "OUTPUT_IMAGE_SIZE" : OUTPUT_IMAGE_SIZE,
             "DEVICE" : DEVICE
         }
 
-        return state
+        return settings

@@ -4,6 +4,8 @@ from detector_config import DetectorConfig
 
 CONFIG = DetectorConfig()
 
-configuration = CONFIG.configuration()
+DETECTOR_SETTINGS = CONFIG.configuration()
 
-print(configuration)
+extract_face(image_path=DETECTOR_SETTINGS.INPUT_IMAGE ,
+                output_image_size=DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE ,
+                    device=DETECTOR_SETTINGS.DEVICE)
