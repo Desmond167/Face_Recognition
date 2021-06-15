@@ -28,7 +28,7 @@ def extract_face(image_path, output_image_size, device):
         BOUNDING_BOX = boxes
 
     #------- Check if GET_PROBABILITY is True in Config file -------#
-    if DETECTOR_SETTINGS.GET_PROBABILTY == True:
+    if DETECTOR_SETTINGS.GET_PROBABILITY == True:
         PROBABILITY = prob
 
     #------- Check if GET_LANDMARKS is True in Config file -------#
