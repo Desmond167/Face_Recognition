@@ -2,6 +2,9 @@ from PIL import Image
 from detect_face import extract_face
 from detector_config import DetectorConfig
 
+import matplotlib.pyplot as plt
+import numpy as np
+
 #------- Initialize the CONFIGURE Class -------#
 CONFIG = DetectorConfig()
 
@@ -13,13 +16,18 @@ GET_FACE_DETAILS = extract_face(image_path=DETECTOR_SETTINGS.INPUT_IMAGE ,
                 output_image_size=DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE ,
                     device=DETECTOR_SETTINGS.DEVICE)
 
-print(GET_FACE_DETAILS.BOUNDING_BOX)
-CROPPED_FACE_IMAGE = Image.fromarray(GET_FACE_DETAILS.BOUNDING_BOX[0])
-print(CROPPED_FACE_IMAGE)
+fig, ax = plt.subplots(figsize=(160, 160))
 
-if CROPPED_FACE_IMAGE != 'RGB':
-    CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('L')
+for box, landmark in zip(GET_FACE_DETAILS.BOUNDING_BOX, GET_FACE_DETAILS.LANDMARKS):
+    ax.scatter(*np.meshgrid(GET_FACE_DETAILS.BOUNDING_BOX[[0, 2]], GET_FACE_DETAILS.BOUNDING_BOX[[1, 3]]))
+    # ax.scatter(landmark[:, 0], landmark[:, 1], s=8)
+fig.show()
 
-# ------- Resize pixels to required size ------- #
-CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE)
-CROPPED_FACE_IMAGE.save(DETECTOR_SETTINGS.OUTPUT_IMAGE)
+# CROPPED_FACE_IMAGE = Image.fromarray(GET_FACE_DETAILS.BOUNDING_BOX[0])
+
+# if CROPPED_FACE_IMAGE != 'RGB':
+#     CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('RGB')
+
+# # ------- Resize pixels to required size ------- #
+# CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE)
+# CROPPED_FACE_IMAGE.save(DETECTOR_SETTINGS.OUTPUT_IMAGE)
