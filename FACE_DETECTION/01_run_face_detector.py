@@ -17,7 +17,7 @@ print(GET_FACE_DETAILS.BOUNDING_BOX)
 CROPPED_FACE_IMAGE = Image.fromarray(GET_FACE_DETAILS.BOUNDING_BOX)
 
 if CROPPED_FACE_IMAGE != 'RGB':
-    CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('RGB')
+    CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('L')
     print("1")
 
 # ------- Resize pixels to required size ------- #
