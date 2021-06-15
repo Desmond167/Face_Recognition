@@ -44,3 +44,5 @@ def extract_face(image_path, output_image_size, device):
 
     #------- Convert Face Info dict to python object -------#
     FACE_DETAILS = namedtuple("FACE_DETAILS", face_dict.keys())(*face_dict.values())
+
+    return FACE_DETAILS
