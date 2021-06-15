@@ -3,7 +3,7 @@ from PIL import Image as im
 ################ Extract a face from a given photograph ################
 def extract_face():
     # load image from file
-    pixels = im.open("sharon.jpg")
+    pixels = im.open("../sharon.jpg")
     # create the detector, using default weights
     detector = MTCNN()
     # detect faces in the image
