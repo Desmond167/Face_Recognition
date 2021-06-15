@@ -24,7 +24,7 @@ GET_FACE_DETAILS = extract_face(image_path=DETECTOR_SETTINGS.INPUT_IMAGE ,
 # plt.show()
 
 for box in GET_FACE_DETAILS.BOUNDING_BOX:
-    CROPPED_FACE_IMAGE = Image.fromarray(*np.meshgrid(box[[0, 2]], box[[1, 3]]))
+    CROPPED_FACE_IMAGE = Image.fromarray(*np.meshgrid(box[0, 2], box[1, 3]))
 
 if CROPPED_FACE_IMAGE != 'RGB':
     CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('RGB')
