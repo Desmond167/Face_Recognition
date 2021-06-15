@@ -12,7 +12,7 @@ GET_FACE_DETAILS = extract_face(image_path=DETECTOR_SETTINGS.INPUT_IMAGE ,
                 output_image_size=DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE ,
                     device=DETECTOR_SETTINGS.DEVICE)
 
-    print(GET_FACE_DETAILS)
+print(GET_FACE_DETAILS)
 
 
     # resize pixels to the model size
