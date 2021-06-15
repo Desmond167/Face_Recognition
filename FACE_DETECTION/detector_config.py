@@ -8,7 +8,7 @@ INPUT_IMAGE = "../sharon.jpg"
 OUTPUT_IMAGE = "../DETECTED_FACES/sharon.jpg"
 
 #------- Set the dimension for output image of the model -------#
-OUTPUT_IMAGE_SIZE = (160,160)
+OUTPUT_IMAGE_SIZE = (1600,2350)
 
 #------- Select the processing device for the algorithm -------#
 DEVICE = "cuda:0"
