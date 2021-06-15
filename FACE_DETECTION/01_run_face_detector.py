@@ -18,6 +18,7 @@ CROPPED_FACE_IMAGE = Image.fromarray(GET_FACE_DETAILS.BOUNDING_BOX)
 
 if CROPPED_FACE_IMAGE != 'RGB':
     CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('RGB')
+    print("1")
 
 # ------- Resize pixels to required size ------- #
 CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE)
