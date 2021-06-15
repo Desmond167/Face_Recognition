@@ -21,7 +21,7 @@ fig, ax = plt.subplots(figsize=(160, 160))
 for box, landmark in zip(GET_FACE_DETAILS.BOUNDING_BOX, GET_FACE_DETAILS.LANDMARKS):
     ax.scatter(*np.meshgrid(box[[0, 2]], box[[1, 3]]))
     # ax.scatter(landmark[:, 0], landmark[:, 1], s=8)
-fig.show()
+plt.show()
 
 # CROPPED_FACE_IMAGE = Image.fromarray(GET_FACE_DETAILS.BOUNDING_BOX[0])
 
