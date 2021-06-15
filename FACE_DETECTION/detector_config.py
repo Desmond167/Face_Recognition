@@ -4,7 +4,7 @@ from collections import namedtuple
 
 OUTPUT_IMAGE_SIZE = (160,160)
 
-DEVICE = "cuda"
+DEVICE = "cuda:0"
 
 class DetectorConfig:
 
