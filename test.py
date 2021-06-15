@@ -1,1 +1,1 @@
-help(MTCNN)
+help('MTCNN')
