@@ -15,7 +15,6 @@ def extract_face(filename, required_size=(224, 224)):
 	face = pixels[y1:y2, x1:x2]
 	# resize pixels to the model size
 	image = im.fromarray(face)
-	image = image.resize((160,160))
-	face_array = asarray(image)
-    PIL_image = im.fromarray(np.uint8(numpy_image)).convert('RGB')
-    print(PIL_image)
+	new_image = image.resize((160,160))
+    # new_image.save('new.jpg')
+    print(new_image)
