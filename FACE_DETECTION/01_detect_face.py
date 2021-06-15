@@ -1,4 +1,5 @@
 from PIL import Image as im
+from facenet_pytorch import MTCNN
 
 ################ Extract a face from a given photograph ################
 def extract_face():
