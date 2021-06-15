@@ -1,3 +1,4 @@
+from PIL import Image
 from detect_face import extract_face
 from detector_config import DetectorConfig
 
@@ -12,11 +13,9 @@ GET_FACE_DETAILS = extract_face(image_path=DETECTOR_SETTINGS.INPUT_IMAGE ,
                 output_image_size=DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE ,
                     device=DETECTOR_SETTINGS.DEVICE)
 
-print(GET_FACE_DETAILS)
+print(GET_FACE_DETAILS.BOUNDING_BOX)
+CROPPED_FACE_IMAGE = Image.fromarray(GET_FACE_DETAILS.BOUNDING_BOX)
 
-
-    # resize pixels to the model size
-    # image = im.fromarray(face)
-    # image = image.resize((160,160))
-    # image.save('new.jpg')
-    # print(image)
+# ------- Resize pixels to required size ------- #
+CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE)
+CROPPED_FACE_IMAGE.save(DETECTOR_SETTINGS.OUTPUT_IMAGE)

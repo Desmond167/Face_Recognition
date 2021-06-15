@@ -4,6 +4,9 @@ from collections import namedtuple
 #------- The Input for the model -------#
 INPUT_IMAGE = "../sharon.jpg"
 
+#------- The Output for the MTCNN model -------#
+OUTPUT_IMAGE = "../DETECTED_FACES/sharon.jpg"
+
 #------- Set the dimension for output image of the model -------#
 OUTPUT_IMAGE_SIZE = (160,160)
 
@@ -26,6 +29,7 @@ class DetectorConfig:
         #------- Required settings for the MTCNN Model -------#
         settings_dict = {
             "INPUT_IMAGE" : INPUT_IMAGE,
+            "OUTPUT_IMAGE" : OUTPUT_IMAGE,
             "OUTPUT_IMAGE_SIZE" : OUTPUT_IMAGE_SIZE,
             "DEVICE" : DEVICE,
             "GET_BOUNDING_BOX" : GET_BOUNDING_BOX,
