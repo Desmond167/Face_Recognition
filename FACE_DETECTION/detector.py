@@ -2,7 +2,6 @@ from PIL import Image
 from facenet_pytorch import MTCNN
 from detector_config import DetectorConfig
 from collections import namedtuple
-from matplotlib import pyplot
 import numpy as np
 
 
@@ -21,7 +20,7 @@ class DetectFace:
         PROBABILITY = []
         LANDMARKS = []
 
-        #------- Initialize the MTCNN Model using default weights -------
+        #_______ Initialize the MTCNN Model using default weights _______#
         MTCNN_MODEL = MTCNN(keep_all=True, device=self.DEVICE)
 
         # _______ Load the Image _______ #

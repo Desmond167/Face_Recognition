@@ -9,9 +9,9 @@ FOLDER_STRUCTURE = "/"
 BASE_DIR = "{ROOT_DIR}{FOLDER_STRUCTURE}".format(ROOT_DIR=ROOT_DIR,
                                                 FOLDER_STRUCTURE=FOLDER_STRUCTURE)
 
-############################################################################################
-################################## CONFIGURATION SETTINGS ##################################
-############################################################################################
+##########################################################################################################
+######################################### CONFIGURATION SETTINGS #########################################
+##########################################################################################################
 
 IMAGE_NAME = "sharon.jpg"
 
@@ -35,14 +35,6 @@ OUTPUT_IMAGE = "{OUTPUT_IMAGE_FOLDER_PATH}/{IMAGE_NAME}".format(
                                                             OUTPUT_IMAGE_FOLDER_PATH=OUTPUT_IMAGE_FOLDER_PATH,
                                                                 IMAGE_NAME=IMAGE_NAME)
 
-print(INPUT_DIR)
-print(OUTPUT_DIR)
-print(INPUT_IMAGE_FOLDER_PATH)
-print(OUTPUT_IMAGE_FOLDER_PATH)
-print(INPUT_IMAGE)
-print(OUTPUT_IMAGE)
-
-
 OUTPUT_IMAGE_SIZE = (160,160)
 
 DEVICE = "cuda:0"
@@ -53,7 +45,8 @@ BOOL_GET_PROBABILITY = True
 
 BOOL_GET_LANDMARKS = True
 
-############################################################################################
+##########################################################################################################
+##########################################################################################################
 
 class DetectorConfig:
 
