@@ -16,7 +16,7 @@ DETECTOR = DetectFace(input_image=DETECTOR_SETTINGS.INPUT_IMAGE,
 #_______ Run the main Face Detection function _______#
 GET_FACE_DETAILS = DETECTOR.run_MTCNN(output_image_size=DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE ,
                                         bool_get_bounding_box=DETECTOR_SETTINGS.BOOL_GET_BOUNDING_BOX , 
-                                            bool_get_probabilty=DETECTOR_SETTINGS.BOOLGET_PROBABILITY ,
+                                            bool_get_probabilty=DETECTOR_SETTINGS.BOOL_GET_PROBABILITY ,
                                                 bool_get_landmarks=DETECTOR_SETTINGS.BOOL_GET_LANDMARKS)
 
 print(GET_FACE_DETAILS)
