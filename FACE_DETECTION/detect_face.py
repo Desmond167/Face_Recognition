@@ -2,6 +2,7 @@ from PIL import Image
 from facenet_pytorch import MTCNN
 from detector_config import DetectorConfig
 from collections import namedtuple
+from matplotlib import pyplot
 
 
 CONFIG = DetectorConfig()
@@ -18,7 +19,8 @@ def extract_face(image_path, output_image_size, device):
     MTCNN_MODEL = MTCNN(keep_all=True, device=device)
 
     # ------- Load the Image ------- #
-    INPUT_IMAGE = Image.open(image_path)
+    # INPUT_IMAGE = Image.open(image_path)
+    INPUT_IMAGE = pyplot.imread(image_path)
     
     #---------------- Get the bounding box co-ordinates, Probability and Landmarks on the face ----------------#
     boxes, prob, landmarks = MTCNN_MODEL.detect(INPUT_IMAGE, landmarks=DETECTOR_SETTINGS.GET_LANDMARKS)
@@ -34,6 +36,22 @@ def extract_face(image_path, output_image_size, device):
     #------- Check if GET_LANDMARKS is True in Config file -------#
     if DETECTOR_SETTINGS.GET_LANDMARKS == True:
         LANDMARKS = landmarks
+
+    for box in BOUNDING_BOX:
+        x1 = int(box[0])
+        x2 = int(x1 + box[2])
+        y1 = int(box[1])
+        y2 = int(y1 + box[3])
+        CROPPED_FACE_IMAGE = INPUT_IMAGE[y1:y2, x1:x2]
+        CROPPED_FACE_IMAGE = Image.fromarray(CROPPED_FACE_IMAGE)
+
+    if CROPPED_FACE_IMAGE != 'RGB':
+        CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('RGB')
+
+    # ------- Resize pixels to required size ------- #
+    CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE)
+    CROPPED_FACE_IMAGE.save(DETECTOR_SETTINGS.OUTPUT_IMAGE)
+
 
     # ------- Face Dict containing Bounding Box, Probability and Landmarks -------#
     face_dict ={
