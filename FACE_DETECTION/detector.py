@@ -31,7 +31,7 @@ class DetectFace:
         self.INPUT_IMAGE_ARRAY = np.array(LOADED_INPUT_IMAGE)
         
         #________________ Get the bounding box co-ordinates, Probability and Landmarks on the face________________#
-        boxes, prob, landmarks = MTCNN_MODEL.detect(INPUT_IMAGE, landmarks=bool_get_landmarks)
+        boxes, prob, landmarks = MTCNN_MODEL.detect(LOADED_INPUT_IMAGE, landmarks=bool_get_landmarks)
 
         #_______ Check if GET_BOUNDING_BOX is True in Config file _______#
         if bool_get_bounding_box == True:
