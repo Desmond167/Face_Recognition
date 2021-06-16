@@ -64,7 +64,7 @@ class DetectFace:
             x2 = int(x1 + box[2])
             y1 = int(box[1])
             y2 = int(y1 + box[3])
-            CROPPED_FACE_IMAGE = self.INPUT_IMAGE[y1:y2, x1:x2]
+            CROPPED_FACE_IMAGE = self.INPUT_IMAGE_ARRAY[y1:y2, x1:x2]
             CROPPED_FACE_IMAGE = Image.fromarray(CROPPED_FACE_IMAGE)
 
         if CROPPED_FACE_IMAGE != 'RGB':
