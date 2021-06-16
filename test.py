@@ -1,7 +1,7 @@
 import os 
 from pathlib import Path
 
-BASE_DIR = os.path.dirname(os.path.realpath(__file__)).replace('\\','/')
+BASE_DIR = str(Path(__file__).resolve().parent.parent).replace('\\','/')
 OUTPUT_IMAGE_FOLDER = "DETECTED_FACES"
 IMAGE_NAME = "sharon.jpg"
 
