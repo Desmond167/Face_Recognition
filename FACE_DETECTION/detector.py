@@ -73,3 +73,4 @@ class DetectFace:
         #________________Resize pixels to required size________________#
         CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(self.OUTPUT_IMAGE_SIZE)
         CROPPED_FACE_IMAGE.save(self.OUTPUT_IMAGE)
+        print("======= DETECTED FACE IMAGE SAVED =======")
