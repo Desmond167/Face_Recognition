@@ -6,7 +6,7 @@ import os
 #_______ THE CURRENT PROJECT WORKING DIRECTORY _______#
 ROOT_DIR = str(Path(__file__).resolve().parent.parent).replace("\\","/")
 print(ROOT_DIR)
-FOLDER_STRUCTURE = "Projects/Face_recognition/"
+FOLDER_STRUCTURE = "/"
 BASE_DIR = "{ROOT_DIR}{FOLDER_STRUCTURE}".format(ROOT_DIR=ROOT_DIR,
                                                 FOLDER_STRUCTURE=FOLDER_STRUCTURE)
 print(BASE_DIR)
