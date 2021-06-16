@@ -60,7 +60,7 @@ class DetectFace:
 
         return FACE_DETAILS
 
-        ################ Extract a face from a given photograph ################
+    ################ Extract a face from a given photograph ################
     def get_face(self, bounding_box):
 
         for box in bounding_box:

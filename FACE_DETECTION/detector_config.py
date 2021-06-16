@@ -15,14 +15,33 @@ BASE_DIR = "{ROOT_DIR}{FOLDER_STRUCTURE}".format(ROOT_DIR=ROOT_DIR,
 
 IMAGE_NAME = "sharon.jpg"
 
-INPUT_IMAGE = "{BASE_DIR}/{IMAGE_NAME}".format(BASE_DIR=BASE_DIR,
-                                                IMAGE_NAME=IMAGE_NAME)
+INPUT_DIR = ""
 
-OUTPUT_IMAGE_FOLDER = "DETECTED_FACES"
+INPUT_IMAGE_FOLDER_PATH = "{BASE_DIR}{INPUT_DIR}".format(
+                                                        BASE_DIR=BASE_DIR,
+                                                            INPUT_DIR=INPUT_DIR)
 
-OUTPUT_IMAGE = OUTPUT_IMAGE = "{BASE_DIR}/{OUTPUT_IMAGE_FOLDER}/{IMAGE_NAME}".format(
-                                                BASE_DIR=BASE_DIR,                                     OUTPUT_IMAGE_FOLDER=OUTPUT_IMAGE_FOLDER,
-                                                IMAGE_NAME=IMAGE_NAME)
+INPUT_IMAGE = "{INPUT_IMAGE_FOLDER_PATH}{IMAGE_NAME}".format(
+                                                            INPUT_IMAGE_FOLDER_PATH=INPUT_IMAGE_FOLDER_PATH,
+                                                              IMAGE_NAME=IMAGE_NAME)
+
+OUTPUT_DIR = "DETECTED_FACES"
+
+OUTPUT_IMAGE_FOLDER_PATH = "{BASE_DIR}{OUTPUT_DIR}".format(
+                                                        BASE_DIR=BASE_DIR,
+                                                            OUTPUT_DIR=OUTPUT_DIR)
+
+OUTPUT_IMAGE = "{OUTPUT_IMAGE_FOLDER_PATH}/{IMAGE_NAME}".format(
+                                                            OUTPUT_IMAGE_FOLDER_PATH=OUTPUT_IMAGE_FOLDER_PATH,
+                                                                IMAGE_NAME=IMAGE_NAME)
+
+print(INPUT_DIR)
+print(OUTPUT_DIR)
+print(INPUT_IMAGE_FOLDER_PATH)
+print(OUTPUT_IMAGE_FOLDER_PATH)
+print(INPUT_IMAGE)
+print(OUTPUT_IMAGE)
+
 
 OUTPUT_IMAGE_SIZE = (160,160)
 
