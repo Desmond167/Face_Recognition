@@ -7,6 +7,7 @@ ROOT_DIR = str(Path(__file__).resolve().parent.parent).replace("\\","/")
 FOLDER_STRUCTURE = "/"
 BASE_DIR = "{ROOT_DIR}{FOLDER_STRUCTURE}".format(ROOT_DIR=ROOT_DIR,
                                                 FOLDER_STRUCTURE=FOLDER_STRUCTURE)
+print(BASE_DIR)
 
 ##########################################################################################################
 ########################################## CREATING DIRECTORIES ##########################################
