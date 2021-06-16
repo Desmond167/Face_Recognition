@@ -2,6 +2,15 @@ import os
 from pathlib import Path
 
 BASE_DIR = str(Path(__file__).resolve().parent.parent).replace('\\','/')
+
+directory = "abc/xyz"
+path = os.path.join(BASE_DIR, directory)
+os.makedirs(path)
+# try:
+#     os.mkdirs(path)
+# except:
+#     print("error")
+
 # OUTPUT_IMAGE_FOLDER = "DETECTED_FACES"
 # IMAGE_NAME = "sharon.jpg"
 
@@ -14,4 +23,4 @@ BASE_DIR = str(Path(__file__).resolve().parent.parent).replace('\\','/')
 
 # print(INPUT_IMAGE)
 # print(OUTPUT_IMAGE)
-print(BASE_DIR)
+# print(BASE_DIR)
