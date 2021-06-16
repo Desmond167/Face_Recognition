@@ -54,17 +54,22 @@ class DetectFace:
 
         #________________Convert Face Info dict to python object________________#
         FACE_DETAILS = namedtuple("FACE_DETAILS", face_dict.keys())(*face_dict.values())
+
+        print("========================= DETECTED FACIAL DETAILS SUCCESSFULLY =========================")
+
+
         return FACE_DETAILS
 
         ################ Extract a face from a given photograph ################
     def get_face(self, bounding_box):
 
         for box in bounding_box:
-            x1 = int(box[0])
-            x2 = int(x1 + box[2])
-            y1 = int(box[1])
-            y2 = int(y1 + box[3])
-            CROPPED_FACE_IMAGE = self.INPUT_IMAGE_ARRAY[y1:y2, x1:x2]
+            COORDINATE_X1 = int(box[0])
+            COORDINATE_X2 = int(COORDINATE_X1 + box[2])
+            COORDINATE_Y1 = int(box[1])
+            COORDINATE_Y2 = int(COORDINATE_Y1 + box[3])
+
+            CROPPED_FACE_IMAGE = self.INPUT_IMAGE_ARRAY[COORDINATE_Y1:COORDINATE_Y2, COORDINATE_X1:COORDINATE_X2]
             CROPPED_FACE_IMAGE = Image.fromarray(CROPPED_FACE_IMAGE)
 
         if CROPPED_FACE_IMAGE != 'RGB':
@@ -72,5 +77,8 @@ class DetectFace:
 
         #________________Resize pixels to required size________________#
         CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(self.OUTPUT_IMAGE_SIZE)
+
+        #________________Save the cropped face image________________#
         CROPPED_FACE_IMAGE.save(self.OUTPUT_IMAGE)
-        print("======= DETECTED FACE IMAGE SAVED =======")
+
+        print("========================= DETECTED FACE IMAGE SAVED =========================")
