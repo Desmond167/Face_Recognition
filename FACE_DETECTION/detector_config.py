@@ -1,9 +1,17 @@
 #!/usr/bin/env python
 from collections import namedtuple
+from pathlib import Path
 import os 
 
-#_______ THE CURRENT WORKING DIRECTORY _______#
-BASE_DIR = os.path.dirname(os.path.realpath(__file__)).replace('\\','/')
+#_______ THE CURRENT PROJECT WORKING DIRECTORY _______#
+ROOT_DIR = BASE_DIR = (Path(__file__).resolve().parent.parent).replace("\\","/")
+FOLDER_STRUCTURE = "Projects/Face_recognition/"
+BASE_DIR = "{ROOT_DIR}{FOLDER_STRUCTURE}".format(ROOT_DIR=ROOT_DIR,
+                                                FOLDER_STRUCTURE=FOLDER_STRUCTURE)
+
+############################################################################################
+################################## CONFIGURATION SETTINGS ##################################
+############################################################################################
 
 IMAGE_NAME = "sharon.jpg"
 
@@ -25,6 +33,8 @@ BOOL_GET_BOUNDING_BOX = True
 BOOL_GET_PROBABILITY = True
 
 BOOL_GET_LANDMARKS = True
+
+############################################################################################
 
 class DetectorConfig:
 
