@@ -21,6 +21,7 @@ def extract_face(image_path, output_image_size, device):
     # ------- Load the Image ------- #
     # INPUT_IMAGE = Image.open(image_path)
     INPUT_IMAGE = pyplot.imread(image_path)
+    print(INPUT_IMAGE)
     
     #---------------- Get the bounding box co-ordinates, Probability and Landmarks on the face ----------------#
     boxes, prob, landmarks = MTCNN_MODEL.detect(INPUT_IMAGE, landmarks=DETECTOR_SETTINGS.GET_LANDMARKS)
