@@ -12,6 +12,6 @@ OUTPUT_IMAGE = "{BASE_DIR}/{OUTPUT_IMAGE_FOLDER}/{IMAGE_NAME}".format(
                                                         BASE_DIR=BASE_DIR,
                                                             OUTPUT_IMAGE_FOLDER=OUTPUT_IMAGE_FOLDER,                 IMAGE_NAME=IMAGE_NAME)
 
-print(BASE_DIR)
 print(INPUT_IMAGE)
 print(OUTPUT_IMAGE)
+print(BASE_DIR)

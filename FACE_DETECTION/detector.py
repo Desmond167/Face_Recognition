@@ -21,23 +21,23 @@ class DetectFace:
         #------- Initialize the MTCNN Model using default weights -------
         MTCNN_MODEL = MTCNN(keep_all=True, device=self.DEVICE)
 
-        # ------- Load the Image ------- #
+        # _______ Load the Image _______ #
         # INPUT_IMAGE = Image.open(self.INPUT_IMAGE)
         INPUT_IMAGE = pyplot.imread(self.INPUT_IMAGE)
         print(INPUT_IMAGE)
         
-        #---------------- Get the bounding box co-ordinates, Probability and Landmarks on the face ----------------#
+        #________________ Get the bounding box co-ordinates, Probability and Landmarks on the face________________#
         boxes, prob, landmarks = MTCNN_MODEL.detect(INPUT_IMAGE, landmarks=bool_get_landmarks)
 
-        #------- Check if GET_BOUNDING_BOX is True in Config file -------#
+        #_______ Check if GET_BOUNDING_BOX is True in Config file _______#
         if bool_get_bounding_box == True:
             BOUNDING_BOX = boxes
 
-        #------- Check if GET_PROBABILITY is True in Config file -------#
+        #_______ Check if GET_PROBABILITY is True in Config file _______#
         if bool_get_probability == True:
             PROBABILITY = prob
 
-        #------- Check if GET_LANDMARKS is True in Config file -------#
+        #_______ Check if GET_LANDMARKS is True in Config file _______#
         if bool_get_landmarks == True:
             LANDMARKS = landmarks
 

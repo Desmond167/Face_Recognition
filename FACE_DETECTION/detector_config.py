@@ -4,7 +4,7 @@ from pathlib import Path
 import os 
 
 #_______ THE CURRENT PROJECT WORKING DIRECTORY _______#
-ROOT_DIR = BASE_DIR = Path(__file__).resolve().parent.parent.replace("\\","/")
+ROOT_DIR = Path(__file__).resolve().parent.parent.replace("\\","/")
 FOLDER_STRUCTURE = "Projects/Face_recognition/"
 BASE_DIR = "{ROOT_DIR}{FOLDER_STRUCTURE}".format(ROOT_DIR=ROOT_DIR,
                                                 FOLDER_STRUCTURE=FOLDER_STRUCTURE)
