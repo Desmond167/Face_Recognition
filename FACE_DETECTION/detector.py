@@ -3,17 +3,19 @@ from facenet_pytorch import MTCNN
 from detector_config import DetectorConfig
 from collections import namedtuple
 from matplotlib import pyplot
+import numpy as np
 
 
 class DetectFace:
-    def __init__(self, input_image, device, output_image):
+    def __init__(self, input_image, device, output_image, output_image_size):
         self.INPUT_IMAGE = input_image
         self.DEVICE = device
         self.OUTPUT_IMAGE = output_image
-
+        self.OUTPUT_IMAGE_SIZE = output_image_size
 
     ################ Extract a face from a given photograph ################
-    def run_MTCNN(self, output_image_size, bool_get_bounding_box, bool_get_probability, bool_get_landmarks):
+    def run_MTCNN(self, bool_get_bounding_box=True, bool_get_probability=True, bool_get_landmarks=True):
+
         BOUNDING_BOX = []
         PROBABILITY = []
         LANDMARKS = []
@@ -22,8 +24,9 @@ class DetectFace:
         MTCNN_MODEL = MTCNN(keep_all=True, device=self.DEVICE)
 
         # _______ Load the Image _______ #
-        # INPUT_IMAGE = Image.open(self.INPUT_IMAGE)
-        INPUT_IMAGE = pyplot.imread(self.INPUT_IMAGE)
+        INPUT_IMAGE = Image.open(self.INPUT_IMAGE)
+        INPUT_IMAGE = np.array(INPUT_IMAGE)
+        # INPUT_IMAGE = pyplot.imread(self.INPUT_IMAGE)
         print(INPUT_IMAGE)
         
         #________________ Get the bounding box co-ordinates, Probability and Landmarks on the face________________#
@@ -41,6 +44,16 @@ class DetectFace:
         if bool_get_landmarks == True:
             LANDMARKS = landmarks
 
+        #________________Face Dict containing Bounding Box, Probability and Landmarks________________#
+        face_dict ={
+                "BOUNDING_BOX" : BOUNDING_BOX,
+                "PROBABILITY" : PROBABILITY,
+                "LANDMARKS" : LANDMARKS
+            }
+
+        #________________Convert Face Info dict to python object________________#
+        FACE_DETAILS = namedtuple("FACE_DETAILS", face_dict.keys())(*face_dict.values())
+
         for box in BOUNDING_BOX:
             x1 = int(box[0])
             x2 = int(x1 + box[2])
@@ -52,19 +65,26 @@ class DetectFace:
         if CROPPED_FACE_IMAGE != 'RGB':
             CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('RGB')
 
-        # ------- Resize pixels to required size ------- #
+        #________________Resize pixels to required size________________#
         CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(output_image_size)
         CROPPED_FACE_IMAGE.save(self.OUTPUT_IMAGE)
 
-
-        # ------- Face Dict containing Bounding Box, Probability and Landmarks -------#
-        face_dict ={
-                "BOUNDING_BOX" : BOUNDING_BOX,
-                "PROBABILITY" : PROBABILITY,
-                "LANDMARKS" : LANDMARKS
-            }
-
-        #------- Convert Face Info dict to python object -------#
-        FACE_DETAILS = namedtuple("FACE_DETAILS", face_dict.keys())(*face_dict.values())
-
         return FACE_DETAILS
+
+        ################ Extract a face from a given photograph ################
+    def get_face(self, bounding_box):
+
+        for box in bounding_box:
+            x1 = int(box[0])
+            x2 = int(x1 + box[2])
+            y1 = int(box[1])
+            y2 = int(y1 + box[3])
+            CROPPED_FACE_IMAGE = INPUT_IMAGE[y1:y2, x1:x2]
+            CROPPED_FACE_IMAGE = Image.fromarray(CROPPED_FACE_IMAGE)
+
+        if CROPPED_FACE_IMAGE != 'RGB':
+            CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('RGB')
+
+        #________________Resize pixels to required size________________#
+        CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(self.OUTPUT_IMAGE_SIZE)
+        CROPPED_FACE_IMAGE.save(self.OUTPUT_IMAGE)
