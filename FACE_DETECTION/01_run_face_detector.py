@@ -20,4 +20,4 @@ GET_FACE_DETAILS = DETECTOR.run_MTCNN(bool_get_bounding_box=DETECTOR_SETTINGS.BO
                                         bool_get_probability=DETECTOR_SETTINGS.BOOL_GET_PROBABILITY ,
                                             bool_get_landmarks=DETECTOR_SETTINGS.BOOL_GET_LANDMARKS)
 
-print(GET_FACE_DETAILS)
+print(GET_FACE_DETAILS.BOUNDING_BOX)

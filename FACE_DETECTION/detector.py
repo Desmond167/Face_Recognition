@@ -12,6 +12,7 @@ class DetectFace:
         self.DEVICE = device
         self.OUTPUT_IMAGE = output_image
         self.OUTPUT_IMAGE_SIZE = output_image_size
+        self.INPUT_IMAGE_ARRAY = []
 
     ################ Extract a face from a given photograph ################
     def run_MTCNN(self, bool_get_bounding_box=True, bool_get_probability=True, bool_get_landmarks=True):
@@ -24,10 +25,10 @@ class DetectFace:
         MTCNN_MODEL = MTCNN(keep_all=True, device=self.DEVICE)
 
         # _______ Load the Image _______ #
-        INPUT_IMAGE = Image.open(self.INPUT_IMAGE)
-        INPUT_IMAGE = np.array(INPUT_IMAGE)
-        # INPUT_IMAGE = pyplot.imread(self.INPUT_IMAGE)
-        print(INPUT_IMAGE)
+        LOADED_INPUT_IMAGE = Image.open(self.INPUT_IMAGE)
+
+        #_______ Convert image to Numpy Array _______#
+        self.INPUT_IMAGE_ARRAY = np.array(LOADED_INPUT_IMAGE)
         
         #________________ Get the bounding box co-ordinates, Probability and Landmarks on the face________________#
         boxes, prob, landmarks = MTCNN_MODEL.detect(INPUT_IMAGE, landmarks=bool_get_landmarks)
@@ -53,22 +54,6 @@ class DetectFace:
 
         #________________Convert Face Info dict to python object________________#
         FACE_DETAILS = namedtuple("FACE_DETAILS", face_dict.keys())(*face_dict.values())
-
-        for box in BOUNDING_BOX:
-            x1 = int(box[0])
-            x2 = int(x1 + box[2])
-            y1 = int(box[1])
-            y2 = int(y1 + box[3])
-            CROPPED_FACE_IMAGE = INPUT_IMAGE[y1:y2, x1:x2]
-            CROPPED_FACE_IMAGE = Image.fromarray(CROPPED_FACE_IMAGE)
-
-        if CROPPED_FACE_IMAGE != 'RGB':
-            CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('RGB')
-
-        #________________Resize pixels to required size________________#
-        CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(output_image_size)
-        CROPPED_FACE_IMAGE.save(self.OUTPUT_IMAGE)
-
         return FACE_DETAILS
 
         ################ Extract a face from a given photograph ################
@@ -79,7 +64,7 @@ class DetectFace:
             x2 = int(x1 + box[2])
             y1 = int(box[1])
             y2 = int(y1 + box[3])
-            CROPPED_FACE_IMAGE = INPUT_IMAGE[y1:y2, x1:x2]
+            CROPPED_FACE_IMAGE = self.INPUT_IMAGE[y1:y2, x1:x2]
             CROPPED_FACE_IMAGE = Image.fromarray(CROPPED_FACE_IMAGE)
 
         if CROPPED_FACE_IMAGE != 'RGB':
