@@ -1,34 +1,22 @@
 from PIL import Image
-from detect_face import extract_face
+from detector import DetectFace
 from detector_config import DetectorConfig
 
-import matplotlib.pyplot as plt
-import numpy as np
-
-#------- Initialize the CONFIGURE Class -------#
+#_______ Initialize the CONFIGURE Class _______#
 CONFIG = DetectorConfig()
 
+#_______ Import the Configuration Object _______#
 DETECTOR_SETTINGS = CONFIG.configuration()
 
+#_______ Initialize the Detector Class _______#
+DETECTOR = DetectFace(input_image=DETECTOR_SETTINGS.INPUT_IMAGE,
+                        output_image=DETECTOR_SETTINGS.OUTPUT_IMAGE,
+                            device=DETECTOR_SETTINGS.DEVICE)
 
-#------- Run the main Face Detection function -------#
-GET_FACE_DETAILS = extract_face(image_path=DETECTOR_SETTINGS.INPUT_IMAGE ,
-                output_image_size=DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE ,
-                    device=DETECTOR_SETTINGS.DEVICE)
+#_______ Run the main Face Detection function _______#
+GET_FACE_DETAILS = DETECTOR.run_MTCNN(output_image_size=DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE ,
+                                        bool_get_bounding_box=DETECTOR_SETTINGS.BOOL_GET_BOUNDING_BOX , 
+                                            bool_get_probabilty=DETECTOR_SETTINGS.BOOLGET_PROBABILITY ,
+                                                bool_get_landmarks=DETECTOR_SETTINGS.BOOL_GET_LANDMARKS)
 
-# fig, ax = plt.subplots(figsize=(160, 160))
-# for box, landmark in zip(GET_FACE_DETAILS.BOUNDING_BOX, GET_FACE_DETAILS.LANDMARKS):
-#     ax.scatter(*np.meshgrid(box[[0, 2]], box[[1, 3]]))
-#     print(box)
-#     print(box[[0, 2]])
-# plt.show()
-
-for box in GET_FACE_DETAILS.BOUNDING_BOX:
-    CROPPED_FACE_IMAGE = Image.fromarray(*np.meshgrid(box[0, 2], box[1, 3]))
-
-if CROPPED_FACE_IMAGE != 'RGB':
-    CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.convert('RGB')
-
-# ------- Resize pixels to required size ------- #
-CROPPED_FACE_IMAGE = CROPPED_FACE_IMAGE.resize(DETECTOR_SETTINGS.OUTPUT_IMAGE_SIZE)
-CROPPED_FACE_IMAGE.save(DETECTOR_SETTINGS.OUTPUT_IMAGE)
+print(GET_FACE_DETAILS)
